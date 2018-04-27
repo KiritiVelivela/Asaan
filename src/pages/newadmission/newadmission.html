@@ -1,0 +1,405 @@
+
+<ion-header>
+  <ion-navbar>
+  <button ion-button menuToggle>
+    <ion-icon name="menu"></ion-icon>
+  </button>
+    <ion-title>newadmission</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+        <ion-item [ngClass]="{'error-border':!authForm.controls.username.valid && authForm.controls.username.touched}">
+            <ion-label floating>Name</ion-label>
+            <ion-input formControlName="username" type="text"></ion-input>
+        </ion-item>
+ 
+        <ion-item *ngIf="authForm.controls.username.hasError('required') && authForm.controls.username.touched">
+            <p>Sorry, field username is required!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.username.hasError('pattern') && authForm.controls.username.touched">
+            <p>Sorry, only small and capital letters are allowed!</p>
+        </ion-item>        
+        <ion-item *ngIf="authForm.controls.username.hasError('minlength') && authForm.controls.username.touched">
+            <p>Sorry, minimum username length is 8!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.username.hasError('maxlength') && authForm.controls.username.touched">
+            <p>Sorry, maximum username length is 30!</p>
+        </ion-item>
+ 
+        <ion-item [ngClass]="{'error-border':!authForm.controls.age.valid && authForm.controls.age.touched}">
+            <ion-label floating>Age</ion-label>
+            <ion-input formControlName="age" type="number"></ion-input>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.age.hasError('required') && authForm.controls.age.touched">
+            <p>Sorry, field password is required!</p>
+        </ion-item>
+        <ion-item *ngIf="authForm.controls.age.hasError('minlength') && authForm.controls.age.touched">
+            <p>Sorry, minimum password length is 8!</p>
+        </ion-item>                
+
+
+        <ion-item>
+            <ion-label>Gender</ion-label>
+            <ion-select interface="popover" formControlName="gender">
+              <ion-option value="f">Female</ion-option>
+              <ion-option value="m">Male</ion-option>
+            </ion-select>
+        </ion-item>
+
+ 
+        <button ion-button icon-end>
+            Current Location
+            <ion-icon name="locate"></ion-icon>
+        </button>
+
+        <!-- <ion-item>
+            <ion-label floating>Name</ion-label>
+            <ion-input type="text"> {{username}} </ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Age</ion-label>
+            <ion-input type="number"> {{age}} </ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Gender</ion-label>
+            <ion-input type="text"> {{gender}} </ion-input>
+        </ion-item> -->
+    
+        <ion-item>
+            <ion-label floating>Phone Number</ion-label>
+            <ion-input type="tel"></ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Address for Communication</ion-label>
+            <ion-input type="text"> </ion-input>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Email</ion-label>
+            <ion-input type="email"></ion-input>
+        </ion-item>
+    
+    
+        <ion-item>
+            <ion-label floating>Mode of Injury</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="rta">RTA</ion-option>
+              <ion-option value="assault">Assault</ion-option>
+              <ion-option value="fall">FALL</ion-option>
+              <ion-option value="other">Other</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Date and Time of Injury</ion-label>
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Date and Time of ED(Casuality) Admission </ion-label>
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Mode of Transport</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="108">108</ion-option>
+              <ion-option value="privateambulance">Private Ambulance</ion-option>
+              <ion-option value="self">Self</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Care given at ED(Casuality)</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="yes">Yes</ion-option>
+              <ion-option value="no">No</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Patient Education Level</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="primary">Primary</ion-option>
+              <ion-option value="secondar">Secondary</ion-option>
+              <ion-option value="college">College</ion-option>
+              <ion-option value="higher">Higher</ion-option>
+              <ion-option value="other">Other</ion-option>
+            </ion-select>
+        </ion-item>
+    
+    
+            <ion-list>
+                <ion-list-header>
+                    Vital Signs on Admission
+                </ion-list-header>
+                <ion-item>
+                    <ion-label floating>Heart Rate</ion-label>
+                    <ion-input type="text"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Blood Pressure</ion-label>
+                    <ion-input type="text"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Respiratory Rate</ion-label>
+                    <ion-input type="text"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>O2 Saturation</ion-label>
+                    <ion-input type="text"> </ion-input>
+                </ion-item>
+                <ion-item-divider>
+                    GCS
+                </ion-item-divider>
+                <ion-item>
+                    <ion-label floating>Eye</ion-label>
+                    <ion-input type="number"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Verbal</ion-label>
+                    <ion-input type="number"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Motor</ion-label>
+                    <ion-input type="number"> </ion-input>
+                </ion-item>
+                <ion-item>
+                    <ion-label floating>Total</ion-label>
+                    <ion-input type="number"> </ion-input>
+                </ion-item>
+            </ion-list>
+       
+    
+        <ion-item>
+            <ion-label floating>Cervical Spine Immobilized</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="prehospital">Pre-Hospital</ion-option>
+              <ion-option value="inhospital">In-Hospital</ion-option>
+              <ion-option value="no">No</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Pupils at Arrival</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="bothreacting">Both Pupils Reacting</ion-option>
+              <ion-option value="onlyonereactive">Only One Reactive </ion-option>
+              <ion-option value="nonreactive">Both Non Reactive</ion-option>
+              <ion-option value="notassessable">Not Assessable</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Airway on ED(casuality) Admission</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="spontaneousventilation">Spontaneous Ventilation</ion-option>
+              <ion-option value="gasping">Gasping</ion-option>
+              <ion-option value="securedelse">Secured Elsewhere</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>If Airway secured prior to arrival</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="oralairway">Oral Airway</ion-option>
+              <ion-option value="lma">LMA</ion-option>
+              <ion-option value="intubation">Endotrachial Intubation</ion-option>
+              <ion-option value="tracheostomy">Tracheostomy</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Airway treatment in ED(casuality)</ion-label>
+            <ion-select interface="popover">
+                <ion-option value="oralairway">Oral Airway</ion-option>
+                <ion-option value="lma">LMA</ion-option>
+                <ion-option value="intubation">Endotrachial Intubation</ion-option>
+                <ion-option value="tracheostomy">Tracheostomy</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Scalp Bleeding</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="yes">Yes</ion-option>
+              <ion-option value="no">No</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Bleeding</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="nose">Nose</ion-option>
+              <ion-option value="ear">Ear</ion-option>
+              <ion-option value="mouth">Mouth</ion-option>
+              <ion-option value="none">None</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Neurological Deficits</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="hemiplegia">Hemiplegia</ion-option>
+              <ion-option value="paraplegia">Paraplegia</ion-option>
+              <ion-option value="none">None</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Influence of Alchohol at the time of injury</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="yes">Yes</ion-option>
+              <ion-option value="no">No</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>Associated injuries diagnosed in ED</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="chest">Chest</ion-option>
+              <ion-option value="abdomen">Abdomen</ion-option>
+              <ion-option value="pelvis">Pelvis</ion-option>
+              <ion-option value="longbone">Long Bone</ion-option>
+              <ion-option value="spine">Spine</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-item>
+            <ion-label floating>CT Brain</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="normal">Normal</ion-option>
+              <ion-option value="abnorma">Abnormal</ion-option>
+              <ion-option value="notdone">Not Done</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-list>
+            <ion-list-header>
+                Treatments
+            </ion-list-header>
+            <ion-item>
+                <ion-label floating>Hemorrhage Control</ion-label>
+                <ion-select interface="popover">
+                  <ion-option value="yes">Yes</ion-option>
+                  <ion-option value="no">No</ion-option>
+                  <ion-option value="notrequired">Not Required</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Airway Secured</ion-label>
+                <ion-select interface="popover">
+                  <ion-option value="yes">Yes</ion-option>
+                  <ion-option value="no">No</ion-option>
+                  <ion-option value="notrequired">Not Required</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Fluid Support Given</ion-label>
+                <ion-select interface="popover">
+                  <ion-option value="yes">Yes</ion-option>
+                  <ion-option value="no">No</ion-option>
+                  <ion-option value="notrequired">Not Required</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Transfusion</ion-label>
+                <ion-select interface="popover">
+                  <ion-option value="yes">Yes</ion-option>
+                  <ion-option value="no">No</ion-option>
+                </ion-select>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Mannitol</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Phenytoin</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Sedation/Narcotic</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+        </ion-list>
+    
+        <ion-item>
+            <ion-label floating>Disposition from ED(casuality)</ion-label>
+            <ion-select interface="popover">
+              <ion-option value="highercenter">Referred to higher center</ion-option>
+              <ion-option value="icu">Admitted in ICU</ion-option>
+              <ion-option value="addmittedward">Admitted in Ward</ion-option>
+              <ion-option value="dischargedok">Discharged OK</ion-option>
+              <ion-option value="lama">LAMA</ion-option>
+              <ion-option value="dead">Dead</ion-option>
+            </ion-select>
+        </ion-item>
+    
+        <ion-list-header>
+            If case is reffered to higher center, Fill up the following
+        </ion-list-header>
+    
+        <ion-item>
+            <ion-label floating>Date and Time of tranfer from ED(Casuality) </ion-label>
+            <ion-datetime displayFormat="MMM DD, YYYY HH:mm"></ion-datetime>
+        </ion-item>
+    
+        <ion-list>
+            <ion-list-header>
+                Vital Signs on Discharge/Transfer
+            </ion-list-header>
+            <ion-item>
+                <ion-label floating>Heart Rate</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Blood Pressure</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Respiratory Rate</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>O2 Saturation</ion-label>
+                <ion-input type="text"> </ion-input>
+            </ion-item>
+            <ion-item-divider>
+                GCS
+            </ion-item-divider>
+            <ion-item>
+                <ion-label floating>Eye</ion-label>
+                <ion-input type="number"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Verbal</ion-label>
+                <ion-input type="number"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Motor</ion-label>
+                <ion-input type="number"> </ion-input>
+            </ion-item>
+            <ion-item>
+                <ion-label floating>Total</ion-label>
+                <ion-input type="number"> </ion-input>
+            </ion-item>
+        </ion-list>
+    
+        <ion-item>
+            <ion-label floating>Discharge/Transfer Data filled by</ion-label>
+            <ion-input type="text"> </ion-input>
+        </ion-item>
+    
+      <h1>Welcome {{username}}</h1>
+      <button ion-button full color="primary" style="margin-top: 20px;" (click)="logout()">Logout</button>
+
+        <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Authorize</button>        
+    </form>
+</ion-content>
