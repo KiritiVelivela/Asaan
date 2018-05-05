@@ -5,7 +5,15 @@ import { SplashScreen } from '@ionic-native/splash-screen';
 
 import { HomePage } from '../pages/home/home';
 import { ListPage } from '../pages/list/list';
+import { LoginPage } from '../pages/login/login';
 import { NewadmissionPage } from '../pages/newadmission/newadmission';
+import { AttendantformPage } from '../pages/attendantform/attendantform';
+import { AdmitsPage } from '../pages/admits/admits';
+import { ReferalPage } from '../pages/referal/referal';
+import { DischargePage } from '../pages/discharge/discharge';
+import { UsersPage } from '../pages/users/users';
+import { PatientprofilePage } from '../pages/patientprofile/patientprofile';
+import { LevelsPage } from '../pages/levels/levels';
 
 @Component({
   templateUrl: 'app.html'
@@ -13,7 +21,7 @@ import { NewadmissionPage } from '../pages/newadmission/newadmission';
 export class MyApp {
   @ViewChild(Nav) nav: Nav;
 
-  rootPage: any = HomePage;
+  rootPage: any = LoginPage;
 
   pages: Array<{title: string, component: any}>;
 
@@ -24,10 +32,13 @@ export class MyApp {
     this.pages = [
       { title: 'Dashboard', component: HomePage },
       { title: 'New Admission', component: NewadmissionPage },
-      { title: 'Admits', component: ListPage },
-      { title: 'Discharged Patients', component: ListPage },
-      { title: 'Refereal Cases', component: ListPage },
-      { title: 'Ambulances', component: ListPage }
+      { title: 'Attendant Admission', component: AttendantformPage },
+      { title: 'Admits', component: AdmitsPage },
+      { title: 'Discharged Patients', component: DischargePage },
+      { title: 'Refereal Cases', component: ReferalPage },
+      { title: 'Levels', component: LevelsPage },
+      { title: 'Users', component: UsersPage },
+      { title: 'Settings', component: ListPage }
     ];
 
   }

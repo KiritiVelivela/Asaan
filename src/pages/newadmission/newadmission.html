@@ -47,6 +47,7 @@
             <ion-select interface="popover" formControlName="gender">
               <ion-option value="f">Female</ion-option>
               <ion-option value="m">Male</ion-option>
+              <ion-option value="t">Transgender</ion-option>
             </ion-select>
         </ion-item>
 
@@ -330,7 +331,7 @@
             </ion-item>
         </ion-list>
     
-        <ion-item>
+        <!-- <ion-item>
             <ion-label floating>Disposition from ED(casuality)</ion-label>
             <ion-select interface="popover">
               <ion-option value="highercenter">Referred to higher center</ion-option>
@@ -398,7 +399,7 @@
         </ion-item>
     
       <h1>Welcome {{username}}</h1>
-      <button ion-button full color="primary" style="margin-top: 20px;" (click)="logout()">Logout</button>
+      <button ion-button full color="primary" style="margin-top: 20px;" (click)="logout()">Logout</button> -->
 
         <button ion-button full color="primary" [disabled]="!authForm.valid" style="margin-top: 20px;" type="submit">Authorize</button>        
     </form>

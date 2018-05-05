@@ -1,0 +1,217 @@
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>patientprofile</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding class="transparent-header">
+    <!-- <ion-header>
+      <ion-navbar>
+      </ion-navbar>
+    </ion-header> -->
+    <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + user.coverImage +')'}"></div>
+    <div id="content">
+      <div id="profile-info" padding>
+        <img id="profile-image" [src]="user.profileImage">
+        <h3 id="profile-name">{{user.name}}</h3>
+        <p>{{user.occupation}} &bull; {{user.location}}</p>
+        <p class="profile-description">{{user.description}}</p>
+        <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
+        <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
+      </div>
+      <hr/>
+      <!-- <ion-row class="profile-numbers">
+        <ion-col col-4>
+          <p>Followers</p>
+          <span>{{user.followers}}</span>
+        </ion-col>
+        <ion-col col-4>
+          <p>Following</p>
+          <span>{{user.following}}</span>
+        </ion-col>
+        <ion-col col-4>
+          <p>Posts</p>
+          <span>{{user.posts}}</span>
+        </ion-col>
+      </ion-row> -->
+
+      <ion-list no-lines>
+          <ion-item>
+              <ion-icon name="mail" color="primary" item-start></ion-icon>
+              <p>Mode of Injury</p>
+              RTA
+              <!-- <a button ion-button href="mailto:{{user.email}}" color="primary" item-end medium>Open App</a> -->
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="call" color="danger"></ion-icon>
+              <p>Date &amp; Time of Injury</p>
+              2 past on 14/03/2018
+              <!-- <a button ion-button href="tel:{{user.phone}}" color="danger" item-end medium>Poke me</a> -->
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
+              <p>Date &amp; Time of ED(Casuality) Admission</p>
+              2:40PM on 14/03/2018 
+              <!-- <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{user.phone}}&abid=+{{user.phone}}">Open App</a> -->
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Mode of Transport</p>
+              108
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Care giver present at ED(Casuality)</p>
+              Yes
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Patient Education Level</p>
+              Primary
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Vital Signs on Admission</p>
+              Heart Rate - 82/90 <br/>
+              Blood Pressure - 130/70 <br/>
+              Respiratory Rate - 20/ <br/>
+              O2 Saturation <br/>
+              <ion-item>
+                <p>GCS</p>
+                Eye - 4 <br/>
+                Verbal - 5 <br/>
+                Motor - 6<br/>
+                Total - 15<br/>
+              </ion-item>
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Cervical Spine Immobilized?</p>
+              In-Hospital
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Pupils at Arrival</p>
+              Both Pupils Reacting
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Airway on ED(Casuality) Admission</p>
+              Spontaneous Ventilation
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>If Airway Secured Prior to Arrival</p>
+              None
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Airway Treatment in ED(Casuality)</p>
+              NONE
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Scalp Bleeding</p>
+              Yes
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Bleeding</p>
+              Nose
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Neurological Deficits</p>
+              NONE
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Influence of Alcohol at the time of Injury</p>
+              Blood Drawn - No
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Associated Injuries Diagnosed in ED</p>
+              NONE
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>CT Brain</p>
+              Not Done
+          </ion-item>
+          <ion-item>
+              <ion-icon item-start name="pin" color="twitter"></ion-icon>
+              <p>Treatments</p>
+              <ion-item>
+                <p>Hemorrhage Control</p>
+                Yes
+              </ion-item>
+              <ion-item>
+                <p>Airway Secured</p>
+                Not Required
+              </ion-item>
+              <ion-item>
+                <p>Fluid Support Given</p>
+                  Yes
+              </ion-item>
+              <ion-item>
+                <p>Transfusion</p>
+                  No
+              </ion-item>
+              <ion-item>
+                <p>Drugs Administered</p>
+                  <ion-item>
+                    <p>Manitol</p>
+                    Yes - 1.2gms
+                  </ion-item>
+                  <ion-item>
+                    <p>Phenytoin</p>
+                    No
+                  </ion-item>
+                  <ion-item>
+                    <p>Sedation/Narcotic</p>
+                    No
+                  </ion-item>
+              </ion-item>
+          </ion-item>
+          <p>Filled By Dr. Seshagiri at 2:40:34 14/03/2018 </p>
+      </ion-list>
+
+      <div id="posts">
+        <ion-card *ngFor="let post of posts">
+          <ion-item>
+            <h2 class="sticky">{{user.name}}</h2>
+            <p>{{post.date}}</p>
+          </ion-item>
+          <ion-card-content>
+            <p>{{post.text}}</p>
+          </ion-card-content>
+          <!-- <ion-row>
+            <ion-col col-4>
+              <button ion-button color="purple" clear small icon-left (click)="like(post)">
+                  <ion-icon name='thumbs-up'></ion-icon>
+                  {{post.likes}} Likes
+                </button>
+            </ion-col>
+            <ion-col col-5>
+              <button ion-button no-padding color="purple" clear small icon-left (click)="comment(post)">
+                  <ion-icon name='text'></ion-icon>
+                  {{post.comments}} Comments
+                </button>
+            </ion-col>
+            <ion-col col-3 align-self-center text-center>
+              <p>
+                {{post.timestamp}}
+              </p>
+            </ion-col>
+          </ion-row> -->
+        </ion-card>
+      </div>
+      <button ion-button color="secondary" block (click)="doRadio()">Disposition</button>
+      <button ion-button color="secondary" block (click)="doICU()">ICU Findings</button>
+    </div>
+  </ion-content>
+  

@@ -1,0 +1,29 @@
+<ion-header>
+
+  <ion-navbar>
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+    <ion-title>discharge</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+    <ion-list>
+        <ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
+          <ion-icon [name]="item.icon" item-start>
+          </ion-icon>
+          <h2>{{item.pname}}</h2>
+          <h3>{{item.pid}}</h3>
+          <h4>{{item.admdate}}</h4>
+          <p>{{item.injury}} </p>
+          <ion-note item-end>{{item.disdate}}</ion-note>
+        </ion-item>
+      </ion-list>
+    
+      <div *ngIf="selectedItem" padding>
+          You navigated here from <b>{{selectedItem.pname}}</b>
+      </div>
+</ion-content>
