@@ -11,14 +11,14 @@
     <!-- <ion-header>
       <ion-navbar>
       </ion-navbar>
-    </ion-header> -->
-    <div id="profile-bg" [ngStyle]="{'background-image': 'url(' + user.coverImage +')'}"></div>
+    </ion-header> [ngStyle]="{'background-image': 'url(' + prof.coverImage +')'}" -->
+    <div id="profile-bg" ></div>
     <div id="content">
       <div id="profile-info" padding>
-        <img id="profile-image" [src]="user.profileImage">
-        <h3 id="profile-name">{{user.name}}</h3>
-        <p>{{user.occupation}} &bull; {{user.location}}</p>
-        <p class="profile-description">{{user.description}}</p>
+        <img id="profile-image" [src]="">
+        <h3 id="profile-name">{{this.pdetails.PatientName}}</h3>
+        <p>{{this.pdetails.occupation}} &bull; {{this.pdetails.PatientAddress}}</p>
+        <p class="profile-description">{{this.pdetails.PatientName}}</p>
         <!-- <button ion-button *ngIf="!following" small color="purple" (click)="follow()">Follow</button>
         <button ion-button *ngIf="following" class="follow-button" small color="purple" (click)="follow()">Following<ion-icon name="checkmark"></ion-icon></button> -->
       </div>
@@ -42,138 +42,140 @@
           <ion-item>
               <ion-icon name="mail" color="primary" item-start></ion-icon>
               <p>Mode of Injury</p>
-              RTA
+              {{this.pdetails.ModeOfInjury}}
               <!-- <a button ion-button href="mailto:{{user.email}}" color="primary" item-end medium>Open App</a> -->
           </ion-item>
           <ion-item>
               <ion-icon item-start name="call" color="danger"></ion-icon>
               <p>Date &amp; Time of Injury</p>
-              2 past on 14/03/2018
+              {{this.pdetails.TimeOfInjury}}
+              {{this.pdetails.DateOfInjury}}
               <!-- <a button ion-button href="tel:{{user.phone}}" color="danger" item-end medium>Poke me</a> -->
           </ion-item>
           <ion-item>
               <ion-icon item-start name="logo-whatsapp" color="secondary"></ion-icon>
               <p>Date &amp; Time of ED(Casuality) Admission</p>
-              2:40PM on 14/03/2018 
+              {{this.pdetails.TimeOfED}}
+              {{this.pdetails.DateOfED}}
               <!-- <a button ion-button color="secondary" item-end medium href="whatsapp://send?text=Hi from ionic&phone=+{{user.phone}}&abid=+{{user.phone}}">Open App</a> -->
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Mode of Transport</p>
-              108
+              {{this.pdetails.ModeOfTransport}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Care giver present at ED(Casuality)</p>
-              Yes
+              {{this.pdetails.CareAtED}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Patient Education Level</p>
-              Primary
+              {{this.pdetails.PatientEducation}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Vital Signs on Admission</p>
-              Heart Rate - 82/90 <br/>
-              Blood Pressure - 130/70 <br/>
-              Respiratory Rate - 20/ <br/>
-              O2 Saturation <br/>
+              Heart Rate - 82/90 {{this.pdetails.VitalSign_HeartRate}}<br/>
+              Blood Pressure - 130/70 {{this.pdetails.VitalSign_BP}} <br/>
+              Respiratory Rate - 20/ {{this.pdetails.VitalSign_RespiratoryRate}} <br/>
+              O2 Saturation {{this.pdetails.VitalSign_O2}} <br/>
               <ion-item>
                 <p>GCS</p>
-                Eye - 4 <br/>
-                Verbal - 5 <br/>
-                Motor - 6<br/>
-                Total - 15<br/>
+                Eye - 4{{this.pdetails.GCS_Eye}} <br/>
+                Verbal - 5{{this.pdetails.GCS_Verbal}} <br/>
+                Motor - 6{{this.pdetails.GCS_Motor}}<br/>
+                Total - 15 {{this.pdetails.GCS_Total}} <br/>
               </ion-item>
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Cervical Spine Immobilized?</p>
-              In-Hospital
+              {{this.pdetails.CervicalSpine}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Pupils at Arrival</p>
-              Both Pupils Reacting
+              {{this.pdetails.PupilsArrival}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Airway on ED(Casuality) Admission</p>
-              Spontaneous Ventilation
+              {{this.pdetails.AirwayED }}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>If Airway Secured Prior to Arrival</p>
-              None
+              None{{this.pdetails.IfAirwaySecuredPTA }}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Airway Treatment in ED(Casuality)</p>
-              NONE
+              NONE{{this.pdetails.AirwayTreatment}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Scalp Bleeding</p>
-              Yes
+              {{this.pdetails.ScalpBleeding}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Bleeding</p>
-              Nose
+              {{this.pdetails.Bleeding}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Neurological Deficits</p>
-              NONE
+              {{this.pdetails.NeuralogicalDeficts}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Influence of Alcohol at the time of Injury</p>
-              Blood Drawn - No
+              {{this.pdetails.InfluenceOfAlcohol}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Associated Injuries Diagnosed in ED</p>
-              NONE
+              {{this.pdetails.AssociatedInjuries}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>CT Brain</p>
-              Not Done
+              {{this.pdetails.CTBrain}}
           </ion-item>
           <ion-item>
               <ion-icon item-start name="pin" color="twitter"></ion-icon>
               <p>Treatments</p>
               <ion-item>
                 <p>Hemorrhage Control</p>
-                Yes
+                {{this.pdetails.Treatments_Hemorrhage}}
               </ion-item>
               <ion-item>
                 <p>Airway Secured</p>
-                Not Required
+                {{this.pdetails.Treatments_AirwaySecure}}
               </ion-item>
               <ion-item>
                 <p>Fluid Support Given</p>
-                  Yes
+                  {{this.pdetails.Treatments_FluidSupport}}
               </ion-item>
               <ion-item>
                 <p>Transfusion</p>
-                  No
+                  No{{this.pdetails.Treatments_Transfusion}}
               </ion-item>
               <ion-item>
                 <p>Drugs Administered</p>
                   <ion-item>
                     <p>Manitol</p>
-                    Yes - 1.2gms
+                    {{this.pdetails.Drugs_Mannitol}}
                   </ion-item>
                   <ion-item>
                     <p>Phenytoin</p>
-                    No
+                    {{this.pdetails.Drugs_Phenytoin}}
                   </ion-item>
                   <ion-item>
                     <p>Sedation/Narcotic</p>
-                    No
+                    {{this.pdetails.Drugs_Sedation}}
                   </ion-item>
               </ion-item>
           </ion-item>
@@ -213,5 +215,55 @@
       <button ion-button color="secondary" block (click)="doRadio()">Disposition</button>
       <button ion-button color="secondary" block (click)="doICU()">ICU Findings</button>
     </div>
+
+    <form [formGroup]="authForm" (ngSubmit)="onSubmit(authForm.value)">
+      <ion-input formControlName="PatientId"> {{this.pdetails.PatientId}} </ion-input>
+      <ion-list>
+        <ion-list-header>
+            Vital Signs on Admission
+        </ion-list-header>
+        <ion-item>
+            <ion-label floating>BP</ion-label>
+            <ion-input formControlName="BP" type="text"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Pulse</ion-label>
+            <ion-input formControlName="Pulse" type="text"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Pupils</ion-label>
+            <ion-input formControlName="Pupils" type="text"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Blood</ion-label>
+            <ion-input formControlName="Blood" type="text"> </ion-input>
+        </ion-item>
+        <ion-item-divider>
+            GCS
+        </ion-item-divider>
+        <ion-item>
+            <ion-label floating>Eye</ion-label>
+            <ion-input formControlName="GCS_Eye" type="number"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Verbal</ion-label>
+            <ion-input formControlName="GCS_Verbal" type="number"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Motor</ion-label>
+            <ion-input formControlName="GCS_Motor" type="number"> </ion-input>
+        </ion-item>
+        <ion-item>
+            <ion-label floating>Total</ion-label>
+            <ion-input formControlName="GCS_Total" type="number"> </ion-input>
+        </ion-item>
+    </ion-list>
+    <ion-input formControlName="CTScan"> {{this.pdetails.Ward}} </ion-input>
+    <ion-input formControlName="Remarks"> {{this.pdetails.Ward}} </ion-input>
+    <ion-input formControlName="Status"> {{this.pdetails.Ward}} </ion-input>
+  
+      <button ion-button full color="primary" style="margin-top: 20px;" type="submit">Authorize</button>
+    </form>
+
   </ion-content>
   

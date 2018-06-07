@@ -4,6 +4,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
 import { NativeGeocoder, NativeGeocoderReverseResult, NativeGeocoderForwardResult } from '@ionic-native/native-geocoder';
 import { ListPage } from '../list/list';
+import { NewadmissionProvider } from '../../providers/newadmission/newadmission';
 
 /**
  * Generated class for the NewadmissionPage page.
@@ -21,7 +22,7 @@ export class NewadmissionPage {
 
   authForm: FormGroup;
 
-  constructor(public nav: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
+  constructor(public newadmissionservice: NewadmissionProvider, public nav: NavController, public navParams: NavParams, public formBuilder: FormBuilder, private geolocation: Geolocation, private nativeGeocoder: NativeGeocoder) {
 
     this.geolocation.getCurrentPosition().then((resp) => {
 			console.log(resp);
@@ -38,9 +39,47 @@ export class NewadmissionPage {
 		this.nav = nav;
 
 	    this.authForm = formBuilder.group({
-	        username: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*'), Validators.minLength(8), Validators.maxLength(30)])],
-			age: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.min(5)])],
-			gender: ['', Validators.compose([Validators.required])]
+	        PatientName: ['', Validators.compose([Validators.required, Validators.pattern('[a-zA-Z]*'), Validators.minLength(8), Validators.maxLength(30)])],
+			PatientAge: ['', Validators.compose([Validators.required, Validators.minLength(1), Validators.min(5)])],
+			PatientGender: ['', Validators.compose([Validators.required])],
+			PatientId: ['', Validators.compose([Validators.required])],
+			PatientNo: ['', Validators.compose([Validators.required])],
+			PatientAddress: ['', Validators.compose([Validators.required])],
+			PatientEmail: ['', Validators.compose([Validators.required])],
+			ModeOfInjury: ['', Validators.compose([Validators.required])],
+			DateOfInjury: ['', Validators.compose([Validators.required])],
+			TimeOfInjury: ['', Validators.compose([Validators.required])],
+			DateOfED: ['', Validators.compose([Validators.required])],
+			TimeOfED: ['', Validators.compose([Validators.required])],
+			ModeOfTransport: ['', Validators.compose([Validators.required])],
+			CareAtED: ['', Validators.compose([Validators.required])],
+			PatientEducation: ['', Validators.compose([Validators.required])],
+			VitalSign_HeartRate: ['', Validators.compose([Validators.required])],
+			VitalSign_BP: ['', Validators.compose([Validators.required])],
+			VitalSign_RespiratoryRate: ['', Validators.compose([Validators.required])],
+			VitalSign_O2: ['', Validators.compose([Validators.required])],
+			GCS_Eye: ['', Validators.compose([Validators.required])],
+			GCS_Verbal: ['', Validators.compose([Validators.required])],
+			GCS_Motor: ['', Validators.compose([Validators.required])],
+			GCS_Total: ['', Validators.compose([Validators.required])],
+			CervicalSpine: ['', Validators.compose([Validators.required])],
+			PupilsArrival: ['', Validators.compose([Validators.required])],
+			AirwayED: ['', Validators.compose([Validators.required])],
+			IfAirwaySecuredPTA: ['', Validators.compose([Validators.required])],
+			AirwayTreatment: ['', Validators.compose([Validators.required])],
+			ScalpBleeding: ['', Validators.compose([Validators.required])],
+			Bleeding: ['', Validators.compose([Validators.required])],
+			NeuralogicalDeficts: ['', Validators.compose([Validators.required])],
+			InfluenceOfAlcohol: ['', Validators.compose([Validators.required])],
+			AssociatedInjuries: ['', Validators.compose([Validators.required])],
+			CTBrain: ['', Validators.compose([Validators.required])],
+			Treatments_Hemorrhage: ['', Validators.compose([Validators.required])],
+			Treatments_AirwaySecure: ['', Validators.compose([Validators.required])],
+			Treatments_FluidSupport: ['', Validators.compose([Validators.required])],
+			Treatments_Transfusion: ['', Validators.compose([Validators.required])],
+			Drugs_Mannitol: ['', Validators.compose([Validators.required])],
+			Drugs_Phenytoin: ['', Validators.compose([Validators.required])],
+			Drugs_Sedation: ['', Validators.compose([Validators.required])],
 	    });
 
   }
@@ -66,12 +105,31 @@ export class NewadmissionPage {
 
 	onSubmit(value: any): void { 
 	    if(this.authForm.valid) {
-			window.localStorage.setItem('username', value.username);
-			window.localStorage.setItem('age', value.age);
-			window.localStorage.setItem('gender', value.gender);
-			window.localStorage.setItem('location', value.location);
+			this.newadmissionservice.new_admission(value).then(data => {
+				if(data) {
+				  console.log("on login click!!!!");
+				  console.log(data);
+				  // if (data == "mail verified") {
+				//   console.log(user.email);
+				//   this.navCtrl.setRoot(BeginPage, user.email);
+				  // }
+				  // else{
+				  //   let alert = this.alertCtrl.create({
+				  //     title: 'Email Not Verified!!',
+				  //     subTitle: 'Please verify your email to move ahead.!',
+				  //     buttons: ['OK']
+				  //   });
+				  // alert.present();
+				  // }
+				}
+			  })
+			console.log(value);
+			// window.localStorage.setItem('username', value.username);
+			// window.localStorage.setItem('age', value.age);
+			// window.localStorage.setItem('gender', value.gender);
+			// window.localStorage.setItem('location', value.location);
 
-			this.nav.push(ListPage);
+			// this.nav.push(ListPage);
 	    }
 	}
 

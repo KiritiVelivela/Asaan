@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, AlertController } from 'ionic-angular';
-
+import { FormBuilder, FormGroup, Validators, AbstractControl } from '@angular/forms';
+import { AdmitProvider } from '../../providers/admit/admit';
 
 @IonicPage()
 @Component({
@@ -14,48 +15,80 @@ export class PatientprofilePage {
   testICUResult: any;
 
   following = false;
-  user = {
-    name: 'Seshachari B',
-    profileImage: 'assets/img/avatar/girl-avatar.png',
-    coverImage: 'assets/imgs/KGH-Logo.png',
-    occupation: '24 years',
-    location: 'Male',
-    description: '8886558488 | Bombay Colony, Rushikonda | seshachari@test.com',
-    followers: 456,
-    following: 1052,
-    posts: 35
-  };
+  // user = {
+  //   name: 'Seshachari B',
+  //   profileImage: 'assets/img/avatar/girl-avatar.png',
+  //   coverImage: 'assets/imgs/KGH-Logo.png',
+  //   occupation: '24 years',
+  //   location: 'Male',
+  //   description: '8886558488 | Bombay Colony, Rushikonda | seshachari@test.com',
+  //   followers: 456,
+  //   following: 1052,
+  //   posts: 35
+  // };
 
-  posts = [
-    {
-      postImageUrl: 'assets/img/background/background-2.jpg',
-      text: `CT Scan Findings at Admission - EDH`,
-      date: '2:40PM November 5, 2016',
+  // posts = [
+  //   {
+  //     postImageUrl: 'assets/img/background/background-2.jpg',
+  //     text: `CT Scan Findings at Admission - EDH`,
+  //     date: '2:40PM November 5, 2016',
 
-    },
-    {
-      postImageUrl: 'assets/img/background/background-3.jpg',
-      text: 'CT Scan Findings - SAD',
-      date: '11:00AM October 23, 2016',
+  //   },
+  //   {
+  //     postImageUrl: 'assets/img/background/background-3.jpg',
+  //     text: 'CT Scan Findings - SAD',
+  //     date: '11:00AM October 23, 2016',
 
-    },
-    {
-      postImageUrl: 'assets/img/background/background-4.jpg',
-      date: '4:00PM June 28, 2016',
-      text: `Contusion`,
-    },
-  ];
+  //   },
+  //   {
+  //     postImageUrl: 'assets/img/background/background-4.jpg',
+  //     date: '4:00PM June 28, 2016',
+  //     text: `Contusion`,
+  //   },
+  // ];
 
-  profile: Array<{pid: string, pname: string, ward: string, injury: string, stamp: string, icon: string}>;
+  // profile: Array<{pid: string, pname: string, ward: string, injury: string, stamp: string, icon: string}>;
 
-  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController) {
+  pdetails: any;
+  authForm: FormGroup;
+
+  constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder,public admitService: AdmitProvider) {
+    this.authForm = formBuilder.group({
+      PatientId: ['', Validators.compose([Validators.required])],
+      BP: ['', Validators.compose([Validators.required])],
+      Pulse: ['', Validators.compose([Validators.required])],
+      Pupils: ['', Validators.compose([Validators.required])],
+      Blood: ['', Validators.compose([Validators.required])],
+      GCS_Eye: ['', Validators.compose([Validators.required])],
+      GCS_Verbal: ['', Validators.compose([Validators.required])],
+      GCS_Motor: ['', Validators.compose([Validators.required])],
+      GCS_Total: ['', Validators.compose([Validators.required])],
+      CTScan: ['', Validators.compose([Validators.required])],
+      Remarks: ['', Validators.compose([Validators.required])],
+      Status: ['', Validators.compose([Validators.required])]
+    });
   }
 
   ngOnInit() {
-    this.profile = this.navParams.data
-    console.log(this.profile);
-    console.log(this.navParams.data);
+    this.pdetails = this.navParams.get("firstparams")
+    console.log(this.pdetails);
+    // console.log(this.navParams.data);
   }
+
+  onSubmit(value: any): void { 
+    value.PatientId = this.pdetails.PatientId
+    value.Pupils = "Normal"
+    value.Remarks = "Nothing"
+    value.CTScan = "Normal"
+    value.Status = "Genral Ward"
+    this.admitService.profileupdate(value).then(data => {
+      if(data) {
+        console.log("on login click!!!!");
+        console.log(data);
+      }
+      })
+    console.log(value);
+}
 
   doRadio() {
     const alert = this.alertCtrl.create();
