@@ -22,6 +22,16 @@ export class AdmitProvider {
     return  this.http.get('http://localhost/PHP/product/read_one.php?PatientId='+creds).map(res => res.json());
   }
 
+  getupdates(patientID){
+    var creds = patientID;
+    console.log("Inside getUpdates");
+    console.log(creds);
+    
+    // var headers = new Headers();
+    // headers.append('Content-Type', 'application/x-www-form-urlencoded');
+    return  this.http.get('http://localhost/PHP/profileupdates/read_one.php?PatientId='+creds).map(res => res.json());
+  }
+
   profileupdate(updates){
     var creds = updates;
     var headers = new Headers();

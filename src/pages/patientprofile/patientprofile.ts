@@ -50,6 +50,7 @@ export class PatientprofilePage {
   // profile: Array<{pid: string, pname: string, ward: string, injury: string, stamp: string, icon: string}>;
 
   pdetails: any;
+  updat: any;
   authForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder,public admitService: AdmitProvider) {
@@ -73,6 +74,15 @@ export class PatientprofilePage {
     this.pdetails = this.navParams.get("firstparams")
     console.log(this.pdetails);
     // console.log(this.navParams.data);
+    console.log(this.pdetails.PatientId);
+    this.admitService.getupdates(this.pdetails.PatientId).subscribe(data => {
+      if(data) {
+        console.log("hellooo this is getUpdates Start");
+        console.log(data);
+        this.updat = data.records;
+        console.log("hellooo this is getUpdates");
+      }
+    });
   }
 
   onSubmit(value: any): void { 
