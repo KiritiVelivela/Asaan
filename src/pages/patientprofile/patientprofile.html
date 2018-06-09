@@ -183,16 +183,23 @@
       </ion-list>
 
       <div id="posts">
-        <ion-card *ngFor="let post of posts">
+        <ion-card *ngFor="let upd of this.updat">
           <ion-item>
-            <h2 class="sticky">{{user.name}}</h2>
-            <p>{{post.date}}</p>
+            <h2 class="sticky">PatientId - {{upd.PatientId}}</h2>
+            <!-- <p>{{upd.TimeStamp}}</p> -->
           </ion-item>
           <ion-card-content>
-            <p>{{post.text}}</p>
+            <p>BP - {{upd.BP}}</p>
+            <p>Pulse - {{upd.Pulse}}</p>
+            <p>Pupils - {{upd.Pupils}}</p>
+            <p>Blood - {{upd.Blood}}</p>
+            <p>GCS_Eye - {{upd.GCS_Eye}}</p>
+            <p>GCS_Verbal - {{upd.GCS_Verbal}}</p>
+            <p>GCS_Motor - {{upd.GCS_Motor}}</p>
+            <p>GCS_Total - {{upd.GCS_Total}}</p>
           </ion-card-content>
-          <!-- <ion-row>
-            <ion-col col-4>
+          <ion-row>
+            <!-- <ion-col col-4>
               <button ion-button color="purple" clear small icon-left (click)="like(post)">
                   <ion-icon name='thumbs-up'></ion-icon>
                   {{post.likes}} Likes
@@ -203,13 +210,13 @@
                   <ion-icon name='text'></ion-icon>
                   {{post.comments}} Comments
                 </button>
-            </ion-col>
-            <ion-col col-3 align-self-center text-center>
+            </ion-col> -->
+            <ion-col align-self-center text-end>
               <p>
-                {{post.timestamp}}
+                Updated at - {{upd.TimeStamp}}
               </p>
             </ion-col>
-          </ion-row> -->
+          </ion-row>
         </ion-card>
       </div>
       <button ion-button color="secondary" block (click)="doRadio()">Disposition</button>
@@ -259,7 +266,8 @@
         </ion-item>
     </ion-list>
     <ion-input formControlName="CTScan"> {{this.pdetails.Ward}} </ion-input>
-    <ion-input formControlName="Remarks"> {{this.pdetails.Ward}} </ion-input>
+    <ion-input formControlName="medications"> {{this.pdetails.Ward}} </ion-input>
+    <ion-input formControlName="reports"> {{this.pdetails.Ward}} </ion-input>
     <ion-input formControlName="Status"> {{this.pdetails.Ward}} </ion-input>
   
       <button ion-button full color="primary" style="margin-top: 20px;" type="submit">Authorize</button>

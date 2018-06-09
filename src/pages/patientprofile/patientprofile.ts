@@ -50,7 +50,8 @@ export class PatientprofilePage {
   // profile: Array<{pid: string, pname: string, ward: string, injury: string, stamp: string, icon: string}>;
 
   pdetails: any;
-  updat: any;
+  updat = [];
+  // updat: any;
   authForm: FormGroup;
 
   constructor(public navCtrl: NavController, public navParams: NavParams, public alertCtrl: AlertController, public formBuilder: FormBuilder,public admitService: AdmitProvider) {
@@ -65,7 +66,8 @@ export class PatientprofilePage {
       GCS_Motor: ['', Validators.compose([Validators.required])],
       GCS_Total: ['', Validators.compose([Validators.required])],
       CTScan: ['', Validators.compose([Validators.required])],
-      Remarks: ['', Validators.compose([Validators.required])],
+      medications: ['', Validators.compose([Validators.required])],
+      reports: ['', Validators.compose([Validators.required])],
       Status: ['', Validators.compose([Validators.required])]
     });
   }
@@ -79,8 +81,18 @@ export class PatientprofilePage {
       if(data) {
         console.log("hellooo this is getUpdates Start");
         console.log(data);
-        this.updat = data.records;
-        console.log("hellooo this is getUpdates");
+        if(data.length > 1) {
+          for (let i = 0; i < data.records.length; i++) {
+            data.records[i];
+            console.log(data.records[i]);
+            this.updat.push(data.records[i]);
+          }
+        }
+        else{
+          this.updat.push(data);
+        }
+        console.log(this.updat);
+        console.log("hellooo this.updat");
       }
     });
   }
@@ -88,9 +100,10 @@ export class PatientprofilePage {
   onSubmit(value: any): void { 
     value.PatientId = this.pdetails.PatientId
     value.Pupils = "Normal"
-    value.Remarks = "Nothing"
+    value.reports = "Nothing"
     value.CTScan = "Normal"
     value.Status = "Genral Ward"
+    value.medications = "Continue"
     this.admitService.profileupdate(value).then(data => {
       if(data) {
         console.log("on login click!!!!");
