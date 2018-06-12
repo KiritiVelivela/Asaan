@@ -81,7 +81,7 @@ export class PatientprofilePage {
       if(data) {
         console.log("hellooo this is getUpdates Start");
         console.log(data);
-        if(data.length > 1) {
+        if(data.records.length > 1) {
           for (let i = 0; i < data.records.length; i++) {
             data.records[i];
             console.log(data.records[i]);
