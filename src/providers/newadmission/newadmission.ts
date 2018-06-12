@@ -17,7 +17,7 @@ export class NewadmissionProvider {
     return new Promise(resolve => {
       console.log("Inside providers");
       console.log(creds);
-      this.http.post('http://localhost/PHP/product/create.php', creds, {headers: headers}).subscribe(data => {
+      this.http.post('http://app.traumacare.co/PHP/product/create.php', creds, {headers: headers}).subscribe(data => {
         if(data){
           // this.storeUserCredentials(data.json());
           console.log(data);

@@ -11,7 +11,7 @@ export class AdmitProvider {
   }
 
   getadmits() {
-    return  this.http.get('http://localhost/PHP/category/read.php').map(res => res.json());
+    return  this.http.get('http://app.traumacare.co/PHP/category/read.php').map(res => res.json());
   }
   
 
@@ -19,7 +19,7 @@ export class AdmitProvider {
     var creds = patientID;
     // var headers = new Headers();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return  this.http.get('http://localhost/PHP/product/read_one.php?PatientId='+creds).map(res => res.json());
+    return  this.http.get('http://app.traumacare.co/PHP/product/read_one.php?PatientId='+creds).map(res => res.json());
   }
 
   getupdates(patientID){
@@ -29,7 +29,7 @@ export class AdmitProvider {
     
     // var headers = new Headers();
     // headers.append('Content-Type', 'application/x-www-form-urlencoded');
-    return  this.http.get('http://localhost/PHP/profileupdates/read_one.php?PatientId='+creds).map(res => res.json());
+    return  this.http.get('http://app.traumacare.co/PHP/profileupdates/read_one.php?PatientId='+creds).map(res => res.json());
   }
 
   profileupdate(updates){
@@ -40,7 +40,7 @@ export class AdmitProvider {
     return new Promise(resolve => {
       console.log("Inside ProfileUpdate Provideer");
       console.log(creds);
-      this.http.post('http://localhost/PHP/profileupdates/create.php', creds, {headers: headers}).subscribe(data => {
+      this.http.post('http://app.traumacare.co/PHP/profileupdates/create.php', creds, {headers: headers}).subscribe(data => {
         if(data){
           // this.storeUserCredentials(data.json());
           console.log(data);
